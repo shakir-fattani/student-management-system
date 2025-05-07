@@ -28,7 +28,8 @@ const handleGetStudentDetail = asyncHandler(async (req, res) => {
 const handleStudentStatus = asyncHandler(async (req, res) => {
     const { id } = req.params;
     const { status } = req.body;
-    const { message } = await setStudentStatus({ userId: id, status, reviewerId: null });
+    const { id: reviewerId } = req.user;
+    const { message } = await setStudentStatus({ userId: id, status, reviewerId });
     res.json({ message });
 });
 
